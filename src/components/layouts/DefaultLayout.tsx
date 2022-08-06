@@ -1,6 +1,10 @@
 import { Container } from "react-bootstrap";
 
-const DefaultLayout = ({ children }) => {
+type DefaultlayoutProps = {
+  children: React.ReactNode
+}
+
+const DefaultLayout = ({ children }: DefaultlayoutProps) => {
   return <Container className="pt-3">{children}</Container>;
 };
 
