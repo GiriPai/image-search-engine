@@ -28,6 +28,11 @@ const ImgList = ({ loading, error, images, hasMore, setPageNumber }: ImgListProp
     if (node) observer.current.observe(node)
   }, [loading, hasMore])
 
+  if (error) {
+    return <Alert variant='danger' >Something went wrong!  Please try again later.</Alert>
+  }
+
+
   return (
     <>
       <Figure className="text-center">
@@ -42,7 +47,6 @@ const ImgList = ({ loading, error, images, hasMore, setPageNumber }: ImgListProp
               height={260}
               src={imgData.userImageURL}
             />
-
           } else {
             // No ref
             return <Figure.Image key={imgData.id}
@@ -55,7 +59,6 @@ const ImgList = ({ loading, error, images, hasMore, setPageNumber }: ImgListProp
         })}
       </Figure>
       {loading && <Spinner />}
-      {error && <Alert variant='danger' >Something went wrong!  Please try again later.</Alert>}
       {!loading && !images.length && <Alert variant="info">No results found. Try searching with different query...</Alert>}
       {images.length && !hasMore ?
         <Alert variant="info">You've reached the end.  Try searching with different query...</Alert> : ""}
