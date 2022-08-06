@@ -1,6 +1,5 @@
 import TImage from "./TImage"
 
-
 type TSearchApiRes = {
   total: number,
   totalHits: number,

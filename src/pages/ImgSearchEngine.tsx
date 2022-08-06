@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Card, Form, Stack } from "react-bootstrap";
 import ImgList from "../components/ui/ImgList";
 import useImageSearch from "../hooks/useImageSearch";
@@ -9,6 +9,15 @@ export const ImgSearchEngine = () => {
 
   const { loading, error, images, hasMore } = useImageSearch(query, pageNumber);
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus()
+    }
+
+  }, [])
+
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
     setPageNumber(1);
@@ -18,6 +27,7 @@ export const ImgSearchEngine = () => {
     <Stack gap={3} className="p-3">
       <Card>
         <Form.Control
+          ref={inputRef}
           type="text"
           value={query}
           onChange={handleSearch}
