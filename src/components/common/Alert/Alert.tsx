@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Alert as RBAlert } from "react-bootstrap"
 type AlertProps = {
   children: React.ReactNode,
   variant: 'primary' |
@@ -14,9 +14,9 @@ type AlertProps = {
 
 const Alert = ({ variant, children }: AlertProps) => {
   return (
-    <Alert variant={variant}>
+    <RBAlert variant={variant}>
       {children}
-    </Alert>
+    </RBAlert>
   )
 }
 

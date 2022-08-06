@@ -1,11 +1,17 @@
 import { ChangeEvent, useState } from "react";
 import { Card, Form, Stack } from "react-bootstrap";
+import ImgList from "../components/ui/ImgList";
+import useImageSearch from "../hooks/useImageSearch";
 
 export const ImgSearchEngine = () => {
   const [query, setQuery] = useState("");
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const { loading, error, images, hasMore } = useImageSearch(query, pageNumber);
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
+    setPageNumber(1);
   };
 
   return (
@@ -18,6 +24,28 @@ export const ImgSearchEngine = () => {
           placeholder="Enter search text... "
         ></Form.Control>
       </Card>
+      {!query ?
+        <Card>
+          <Card.Body className="text-center">
+            Happy Searching...
+          </Card.Body>
+        </Card> :
+        <Card>
+          <Card.Header>
+            <Card.Title className="text-center">
+              Search Results
+            </Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <ImgList
+              error={error}
+              loading={loading}
+              images={images}
+              hasMore={hasMore}
+              setPageNumber={setPageNumber}
+            />
+          </Card.Body>
+        </Card>}
 
     </Stack>
   );
