@@ -26,7 +26,7 @@ const ImgList = ({ loading, error, images, hasMore, setPageNumber }: ImgListProp
     })
     // Setting to observe a node when node exists
     if (node) observer.current.observe(node)
-  }, [loading, hasMore])
+  }, [loading, hasMore, setPageNumber])
 
   if (error) {
     return <Alert variant='danger' >Something went wrong!  Please try again later.</Alert>
