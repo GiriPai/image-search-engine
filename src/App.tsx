@@ -1,6 +1,11 @@
+import DefaultLayout from "./components/layouts/DefaultLayout"
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const App = () => {
   return (
-    <div>HELLO</div>
+    <DefaultLayout>
+      <div>HELLO</div>
+    </DefaultLayout>
   );
 }
 
